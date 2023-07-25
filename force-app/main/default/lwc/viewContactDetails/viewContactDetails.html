@@ -1,0 +1,108 @@
+<template>
+    <lightning-card title = "View Contacts">
+        <div style="height:500px;">
+    
+        <table class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer slds-table_striped">
+    
+            <thead>
+    
+                <tr>
+    
+                    <th>
+                        <div title="action">Action</div>
+                    </th>
+    
+                    <th>
+                        <div title="name">Contact Name</div>
+                    </th>
+    
+                    <th>
+                        <div title="phone">Phone</div>
+                    </th>
+                   
+                </tr>
+    
+            </thead>
+    
+            <tbody>
+    
+                <template for:each={contactsList} for:item="cnt">
+    
+                    <tr key={cnt} class="tblRow">
+    
+                        <td data-label="viewBtn">
+    
+                            <div>
+                                <lightning-button variant="brand" onclick={openViewModal} label="View"></lightning-button>
+                            </div>
+    
+                        </td>
+    
+                        <td data-label="ContactName">
+    
+                            <div>{cnt.Name}</div>
+    
+                        </td>
+    
+                        <td data-label="PhoneNumber">
+    
+                            <div>{cnt.Phone}</div>
+    
+                        </td>
+                      
+    
+                    </tr>
+    
+                </template>
+    
+            </tbody>
+    
+        </table>
+    
+    
+    
+    <template if:true={isViewModalOpen}>
+    
+        <!-- Modal/Popup Box LWC starts here -->
+    
+       <!-- Modal/Popup Box LWC starts here -->
+       <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01"
+       aria-modal="true" aria-describedby="modal-content-id-1"
+       class="slds-modal slds-fade-in-open">
+       <div class="slds-modal__container">
+           <!-- Modal/Popup Box LWC header here -->
+           <header class="slds-modal__header">
+               <button
+                   class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                   title="Close" onclick={closeModal}>
+                   <lightning-icon icon-name="utility:close"
+                       alternative-text="close" variant="inverse" size="small">
+                   </lightning-icon>
+                   <span class="slds-assistive-text">Close</span>
+               </button>
+               <h2 id="modal-heading-01"
+                   class="slds-text-heading_medium slds-hyphenate">Confirmation
+                   Title</h2>
+           </header>
+           <!-- Modal/Popup Box LWC body starts here -->
+           <div class="slds-modal__content slds-p-around_medium"
+               id="modal-content-id-1">
+               
+                   
+                   <p>Here I want to show Record Details</p>
+              
+    
+           </div>
+          
+       </div>
+    </section>
+    
+    </template>
+    
+    
+    
+    <!--</lightning-record-edit-form> -->
+    
+    </div>
+    </lightning-card>
+    </template>

@@ -1,0 +1,16 @@
+table {
+    border: 1px solid;;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #DDD;
+    border: 1px solid;
+  }
+  
+  tr:hover {
+    background-color: #D6EEEE;
+}
+
