@@ -23,6 +23,17 @@
             <lightning-button title="Currency Conversion" label="Conversion Rate" variant="brand" 
             onclick={handleCurrencyConversion}></lightning-button>
         </lightning-layout-item>
+
+        <br/>
+
+        <!-- create for customer ledger with CPI-->
+        <lightning-layout-item size="12" small-device-size="4" medium-device-size="2" padding="around-small">
+            <lightning-button title="customerLedger" label="customerLedger" variant="brand" 
+            onclick={handlecustomerLedger}></lightning-button>
+        </lightning-layout-item>
+
+
+
     </lightning-layout>
     <br/><br/>
 
@@ -47,4 +58,27 @@
             </dl>
         </div>
     </template>
+
+    <template if:true={showDataForLedger}>
+        <div class="slds-p-around_medium" id="modal_content-id-2">
+            <div style="font-size: 30px"><h1>showing data</h1></div>
+            
+            <dl class="slds-list_horizontal slds-wrap">
+                <dt class="slds-item_label slds_truncate">Id : </dt>
+                <dd class="slds-item_detail slds_truncate">{showDataForLedger.Id}</dd>
+
+                <dt class="slds-item_label slds_truncate" >Name : </dt>
+                <dd class="slds-item_detail slds_truncate">{showDataForLedger.Name}</dd>
+
+                <dt class="slds-item_label slds_truncate" >Account : </dt>
+                <dd class="slds-item_detail slds_truncate">{showDataForLedger.Account}</dd>
+
+                <dt class="slds-item_label slds_truncate" >Address : </dt>
+                <dd class="slds-item_detail slds_truncate">{showDataForLedger.Address}</dd>
+            </dl>
+        </div>
+    </template>
+
+
+
 </template>

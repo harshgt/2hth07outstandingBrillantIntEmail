@@ -1,5 +1,7 @@
 import { LightningElement,track } from 'lwc';
 import getCurrencyData from '@salesforce/apex/currencyConversionRate.currencyConversionRate';
+import getCustomerLedgerData from '@salesforce/apex/customerLedgerData.customerLedgerData';
+
 const options = 
 [
     {label:'USD', value:'USD'},
@@ -16,6 +18,7 @@ export default class UdemyOrgSfdx extends LightningElement {
     @track formCurrencyOptions=options;
     @track toCurrencyOptions=options;
     @track showData;
+    @track showDataForLedger;
 
     handleFromCurrencyChange(event)
     {
@@ -47,8 +50,6 @@ export default class UdemyOrgSfdx extends LightningElement {
                 Last_Refreshed:''
             };
         
-
-
        /* fetch('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + this.fromCurrencyValue + '&to_currency=' + this.toCurrencyValue + '&apikey=SR7RFFLCXVDG35LJ',
             {
                 method : "GET",
@@ -79,11 +80,16 @@ export default class UdemyOrgSfdx extends LightningElement {
             window.console.log('exchangeData => '+JSON.stringify(exchangeData));
             
             objData.From_Currency_Code=exchangeData['1. From_Currency Code'];
+            console.log('From_Currency_Code => '+JSON.stringify(exchangeData['1. From_Currency Code']));
             objData.From_Currency_Name=exchangeData['2. From_Currency Name'];
             objData.To_Currency_Code=exchangeData['3. To_Currency Code'];
             objData.To_Currency_Name=exchangeData['4. To_Currency Name'];
             objData.Last_Refreshed=exchangeData['6. Last Refreshed'];
+
+            window.console.log('objData123 =>'+exchangeData['6. Last Refreshed']);
+
             this.showData = objData;
+
             window.console.log('objData1 =>'+JSON.stringify(objData));
             console.log('objData2 =>'+JSON.stringify(objData));
             
@@ -91,6 +97,40 @@ export default class UdemyOrgSfdx extends LightningElement {
             window.console.log('callout error '+JSON.stringify(error));
         })
    
+    }
+
+    //call ledger
+    handlecustomerLedger()
+    {
+        let endpoint = 'https://brilliant-polymers-ixuv1tbr.it-cpi011-rt.cfapps.jp20.hana.ondemand.com/http/test/customer';
+       
+        //call apex class with endpoint
+        getCustomerLedgerData({endPointUrl:endpoint})
+        .then(data => {
+            console.log(JSON.stringify(data));
+            
+            let objLedgerData = {
+                Id:'',
+                Name:'',
+                Account:'',
+                Address:''
+            };
+            // eslint-disable-next-line dot-notation
+            let ledger = data['Users'];
+            window.console.log('ledger => '+JSON.stringify(ledger));
+
+            objLedgerData.Id=ledger[0]['Id'];
+            objLedgerData.Name=ledger[0]['Name'];
+            objLedgerData.Account=ledger[0]['Account'];
+            objLedgerData.Address=ledger[0]['Address'];
+
+            this.showDataForLedger = objLedgerData;
+            window.console.log('objLedgerData => '+JSON.stringify(objLedgerData));
+        })
+        .catch(error => {
+            window.console.log('callout error '+JSON.stringify(error));
+        })
+    
     }
 
 }
