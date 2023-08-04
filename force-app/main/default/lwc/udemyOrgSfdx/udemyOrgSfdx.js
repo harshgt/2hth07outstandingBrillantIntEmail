@@ -115,11 +115,11 @@ export default class UdemyOrgSfdx extends LightningElement {
                 Account:'',
                 Address:''
             };
-            // eslint-disable-next-line dot-notation
-            let ledger = data['Users'];
+           
+            let ledger = data.Users;
             window.console.log('ledger => '+JSON.stringify(ledger));
 
-            objLedgerData.Id=ledger[0]['Id'];
+            objLedgerData.Id=ledger[0].Id;
             objLedgerData.Name=ledger[0]['Name'];
             objLedgerData.Account=ledger[0]['Account'];
             objLedgerData.Address=ledger[0]['Address'];
