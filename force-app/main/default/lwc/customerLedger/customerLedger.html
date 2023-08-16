@@ -5,17 +5,24 @@
             <lightning-icon icon-name="utility:activity" size="small"></lightning-icon>
             Ledger Data
         </h2>
+                
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <!-- <label for="startDate">Start Date:</label> -->
+                    <lightning-input type="date" name="startDate" label="Start Date:" value={startDate} max={endDate} onchange={handleStartDateChangeLedger} required></lightning-input>
+                </div>
+                <div class="slds-col">
+                    <!-- <label for="endDate">End Date:</label> -->
+                    <lightning-input type="date" name="endDate" label="End Date:" value={endDate} min={startDate} onchange={handleStartDateChangeLedger} required></lightning-input>
+                </div>
+            </div>    
+        <br/>
+        <lightning-button variant="brand" label="View Customer Ledger" icon-name="utility:arrow_bottom" title="Primary action" onclick={ledgerFetchHandler} disabled={isButtonDisabled} class="slds-m-left_x-small"></lightning-button>
     
-        <div class="slds-var-m-bottom_small">
-            <lightning-input type="text" value="sdfhskjfd" label="Account Sap Id" disabled></lightning-input>
-        </div>
-        <div class="slds-var-m-bottom_small">
-            <lightning-input type="date" label="Select Date" value={selectedDate} onchange={handleDateChange}></lightning-input>
-        </div>
-
-        <lightning-button variant="brand" label="View Customer Ledger" icon-name="utility:arrow_bottom" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-    </lightning-card>
-
+        The response is : {data}
+        and the {data}
+        </lightning-card>
+        
 
      <!-- data related to Outstanding -->
      <lightning-card>
@@ -23,14 +30,14 @@
             <lightning-icon icon-name="utility:away" size="small"></lightning-icon>
             Outstanding Data
         </h2>
-    
+
         <div class="slds-var-m-bottom_small">
-            <lightning-input type="text" value="sdfhskjfd" label="Account Sap Id" disabled></lightning-input>
+            <lightning-input type="text" value={AccountSapId} label="Sap Id" disabled></lightning-input>
         </div>
         <div class="slds-var-m-bottom_small">
-            <lightning-input type="date" label="Range" value={selectedDate} onchange={handleDateChange}></lightning-input>
+            <lightning-input type="date" label="Select Date" value={currentDate} onchange={handleDefaultDateOutstanding} required></lightning-input>
         </div>
 
-        <lightning-button variant="brand" label="View Outstanding" icon-name="utility:arrow_bottom" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="brand" label="View Outstanding" icon-name="utility:arrow_bottom" title="Primary action" onclick={handleClickForOutStanding} class="slds-m-left_x-small"></lightning-button>
     </lightning-card>
 </template>

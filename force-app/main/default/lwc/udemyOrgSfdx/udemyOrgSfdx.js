@@ -1,6 +1,6 @@
 import { LightningElement,track } from 'lwc';
 import getCurrencyData from '@salesforce/apex/currencyConversionRate.currencyConversionRate';
-import getCustomerLedgerData from '@salesforce/apex/customerLedgerData.customerLedgerData';
+import getCustomerLedgerData from '@salesforce/apex/customerData.customerData';
 
 const options = 
 [
@@ -77,10 +77,10 @@ export default class UdemyOrgSfdx extends LightningElement {
             //window.console.log('JSONresponse'+JSON.stringify(jsonResponse));
             //let exchangeData = jsonResponse['Realtime Currency Exchange Rate']; //use for js 
             let exchangeData = data['Realtime Currency Exchange Rate'];
-            window.console.log('exchangeData => '+JSON.stringify(exchangeData));
+           // window.console.log('exchangeData => '+JSON.stringify(exchangeData));
             
             objData.From_Currency_Code=exchangeData['1. From_Currency Code'];
-            console.log('From_Currency_Code => '+JSON.stringify(exchangeData['1. From_Currency Code']));
+            //console.log('From_Currency_Code => '+JSON.stringify(exchangeData['1. From_Currency Code']));
             objData.From_Currency_Name=exchangeData['2. From_Currency Name'];
             objData.To_Currency_Code=exchangeData['3. To_Currency Code'];
             objData.To_Currency_Name=exchangeData['4. To_Currency Name'];
