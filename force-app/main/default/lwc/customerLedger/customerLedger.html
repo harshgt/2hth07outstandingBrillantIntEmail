@@ -1,3 +1,6 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
 <template>
     <!-- data related to ledger -->
     <lightning-card>
@@ -5,32 +8,67 @@
             <lightning-icon icon-name="utility:activity" size="small"></lightning-icon>
             Ledger Data
         </h2>
-                
-            <div class="slds-grid slds-gutters">
-                <div class="slds-col">
-                    <!-- <label for="startDate">Start Date:</label> -->
-                    <lightning-input type="date" name="startDate" label="Start Date:" value={startDate} max={endDate} onchange={handleStartDateChangeLedger} required></lightning-input>
-                </div>
-                <div class="slds-col">
-                    <!-- <label for="endDate">End Date:</label> -->
-                    <lightning-input type="date" name="endDate" label="End Date:" value={endDate} min={startDate} onchange={handleStartDateChangeLedger} required></lightning-input>
-                </div>
-            </div>    
-        <br/>
-        <lightning-button variant="brand" label="View Customer Ledger" icon-name="utility:arrow_bottom" title="Primary action" onclick={ledgerFetchHandler} disabled={isButtonDisabled} class="slds-m-left_x-small"></lightning-button>
-    
-       
-        </lightning-card>
-        <div>
-            <p>Business Partner ID: {businessPartnerId}</p>
-            <p>First Name: {firstName}</p>
-            <p>Last Name: {lastName}</p>
-            <p>OrganizationBPName : {OrganizationBPName}</p>
-            
-        </div>
 
-     <!-- data related to Outstanding -->
-     <lightning-card>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <!-- <label for="startDate">Start Date:</label> -->
+                <lightning-input type="date" name="startDate" label="Start Date:" value={startDate} max={endDate}
+                    onchange={handleStartDateChangeLedger} required></lightning-input>
+            </div>
+            <div class="slds-col">
+                <!-- <label for="endDate">End Date:</label> -->
+                <lightning-input type="date" name="endDate" label="End Date:" value={endDate} min={startDate}
+                    onchange={handleStartDateChangeLedger} required></lightning-input>
+            </div>
+        </div>
+        <br />
+        <lightning-button variant="brand" label="View Customer Ledger" icon-name="utility:arrow_bottom"
+            title="Primary action" onclick={ledgerFetchHandler} disabled={isButtonDisabled}
+            class="slds-m-left_x-small"></lightning-button>
+
+    <template if:true={isShowLedger}>
+        <!-- open PopUp box to print  -->
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={hideLedgerModal}>
+                        <lightning-icon icon-name="standard:first_non_empty" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">SHOW RECORD</h2>
+                </header>
+
+                <!-- modal body start -->
+                <div class="slds-modal__content" id="modal-content-id-2">
+                    <!-- record for the account  -->
+                    <div class="slds-m-around_medium">
+                        
+                                <p>Business Partner: {businessPartnerId}</p>
+                                <p>First Name: {firstName}</p>
+                                <p>Last Name: {lastName}</p>
+                                <p>OrganizationBPName : {OrganizationBPName}</p>
+                            </div>
+                        
+                    </div>
+                </div>
+
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={hideLedgerModal}>Cancel</button>
+                </footer>
+                
+            </div>
+        </section>
+    </template>
+
+    </lightning-card>
+
+    <!-- data related to Outstanding -->
+    <lightning-card>
         <h2>
             <lightning-icon icon-name="utility:away" size="small"></lightning-icon>
             Outstanding Data
@@ -40,9 +78,11 @@
             <lightning-input type="text" value={AccountSapId} label="Sap Id" disabled></lightning-input>
         </div>
         <div class="slds-var-m-bottom_small">
-            <lightning-input type="date" label="Select Date" value={currentDate} onchange={handleDefaultDateOutstanding} required></lightning-input>
+            <lightning-input type="date" label="Select Date" value={currentDate} onchange={handleDefaultDateOutstanding}
+                required></lightning-input>
         </div>
 
-        <lightning-button variant="brand" label="View Outstanding" icon-name="utility:arrow_bottom" title="Primary action" onclick={handleClickForOutStanding} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="brand" label="View Outstanding" icon-name="utility:arrow_bottom"
+            title="Primary action" onclick={handleClickForOutStanding} class="slds-m-left_x-small"></lightning-button>
     </lightning-card>
 </template>

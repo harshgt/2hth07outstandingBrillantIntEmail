@@ -21,6 +21,12 @@ export default class CustomerLedger extends LightningElement {
     firstName;
     lastName;
     OrganizationBPName;
+    @track isShowLedger = false;
+
+
+    hideLedgerModal() {  
+        this.isShowLedger = false;
+    }
 
 
 
@@ -73,6 +79,7 @@ export default class CustomerLedger extends LightningElement {
     ledgerFetchHandler() {
         //eslint-disable-next-line no-alert
         window.alert(this.startDate + ' and ' + this.endDate);
+        this.isShowLedger =true;
         //call rest api
         //check the response 
         //display response 
@@ -82,11 +89,17 @@ export default class CustomerLedger extends LightningElement {
         getCustomerLedgerData({endPointUrl:endpoint, startDate : this.startDate, endDate : this.endDate, recordId : this.recordId })
         .then(data => {
             console.log(JSON.stringify(data));
-
-            this.businessPartnerId = data.BusinessPartner;
-            this.firstName = data.FirstName;
-            this.lastName = data.LastName;
-            this.OrganizationBPName = data.OrganizationBPNameStart;    
+            if(data){
+                
+                this.businessPartnerId = data.BusinessPartner;
+                this.firstName = data.FirstName;
+                this.lastName = data.LastName;
+                this.OrganizationBPName = data.OrganizationBPNameStart;
+            }
+            else{
+                window.console.log('Data Not Found'); 
+            }
+                
         }).catch(error => {
             window.console.log('callout error '+JSON.stringify(error));
         })
