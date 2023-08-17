@@ -4,13 +4,10 @@ import { getRecord } from 'lightning/uiRecordApi';
 import getCustomerLedgerData from '@salesforce/apex/customerLedgerData.customerLedgerData';
 import getCustomerOutStandingData from '@salesforce/apex/customerOutStandingData.customerOutStandingData';
    
-
-
 // Define fields to fetch
 const FIELDS = ['Account.SAP_Code__c'];
 
 export default class CustomerLedger extends LightningElement {
-    
        
     @api recordId;
     AccountSapId;
@@ -19,7 +16,11 @@ export default class CustomerLedger extends LightningElement {
     @track endDate;
     @track isButtonDisabled = true;
     data;
-    @track showDataForLedger;
+    
+    businessPartnerId;
+    firstName;
+    lastName;
+    OrganizationBPName;
 
 
 
@@ -78,29 +79,21 @@ export default class CustomerLedger extends LightningElement {
         let endpoint = 'https://brilliant-polymers-ixuv1tbr.it-cpi011-rt.cfapps.jp20.hana.ondemand.com/http/TEST/ODATA';
        
         //call apex class with endpoint
-        getCustomerLedgerData({endPointUrl:endpoint, startDate : this.startDate, endDate : this.endDate })
+        getCustomerLedgerData({endPointUrl:endpoint, startDate : this.startDate, endDate : this.endDate, recordId : this.recordId })
         .then(data => {
             console.log(JSON.stringify(data));
 
-            this.data = Object.keys(data).map(key => ({ key, value: data[key] }));
-            console.log('ledger => '+JSON.stringify(this.data));
-
-           /*  let objData={
-                title:'',
-                title
-                updated:'',
-            };
- */
-            
-            
+            this.businessPartnerId = data.BusinessPartner;
+            this.firstName = data.FirstName;
+            this.lastName = data.LastName;
+            this.OrganizationBPName = data.OrganizationBPNameStart;    
         }).catch(error => {
             window.console.log('callout error '+JSON.stringify(error));
         })
             
     }  
     
-       
-
+    
 
     //call Http class of OutStanding
     handleClickForOutStanding()

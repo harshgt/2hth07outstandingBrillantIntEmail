@@ -19,10 +19,15 @@
         <br/>
         <lightning-button variant="brand" label="View Customer Ledger" icon-name="utility:arrow_bottom" title="Primary action" onclick={ledgerFetchHandler} disabled={isButtonDisabled} class="slds-m-left_x-small"></lightning-button>
     
-        The response is : {data}
-        and the {data}
+       
         </lightning-card>
-        
+        <div>
+            <p>Business Partner ID: {businessPartnerId}</p>
+            <p>First Name: {firstName}</p>
+            <p>Last Name: {lastName}</p>
+            <p>OrganizationBPName : {OrganizationBPName}</p>
+            
+        </div>
 
      <!-- data related to Outstanding -->
      <lightning-card>
