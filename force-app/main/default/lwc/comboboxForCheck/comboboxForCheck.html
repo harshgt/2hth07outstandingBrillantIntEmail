@@ -1,0 +1,36 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Combobox">
+        <lightning-combobox 
+              name="progress"
+              label="Status"
+              value={value}
+              placeholder="Select Account"
+              options={options}
+              onchange={handleChange} 
+             ></lightning-combobox>
+    </lightning-card>
+
+    
+        <template lwc:if={isVisible}>
+            <template if:true ={data}>
+                <lightning-card title="Showing Datatable">
+                    <div style="height: 300px;">
+                        <lightning-datatable class="slds-max-medium-table_stacked" 
+                            key-field="id"
+                            data={data}
+                            columns={columns}>
+                        </lightning-datatable>
+                    </div>
+                </lightning-card>
+            </template>
+            <template if:false={data}>
+                <Strong><p>Data Not Found!!!</p></Strong>
+            </template>
+        </template>
+
+    
+    
+    
+    
+</template>

@@ -52,12 +52,18 @@
                                 <p>Last Name: {lastName}</p>
                                 <p>OrganizationBPName : {OrganizationBPName}</p>
                             </div>
-                        
-                    </div>
+                            <lightning-button variant="brand" label="Export Ledger data" title="Export Ledger Data" onclick={exportLedgerData}></lightning-button>
+                            <lightning-button variant="brand" label="Export Ledger PDF data" title="Export Ledger PDF Data" onclick={exportLedgerDatapdf}></lightning-button>
+                    
+                        </div>
                 </div>
 
                 <!-- modal footer start-->
                 <footer class="slds-modal__footer">
+                    <p class="slds-m-top--large">
+            
+                        <lightning-button variant="brand" label="Export Contact data" title="Export Contact Data" onclick={exportLedgerData}></lightning-button>
+                    </p>
                     <button class="slds-button slds-button_neutral" onclick={hideLedgerModal}>Cancel</button>
                 </footer>
                 
