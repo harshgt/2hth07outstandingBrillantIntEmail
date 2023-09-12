@@ -19,7 +19,7 @@
     "@lwc/eslint-plugin-lwc": "^1.1.2",
     "@prettier/plugin-xml": "^2.0.1",
     "@salesforce/eslint-config-lwc": "^3.2.3",
-    "@salesforce/eslint-plugin-aura": "^2.0.0",
+    "@salesforce/eslint-plugin-aura": "^1.4.0",
     "@salesforce/eslint-plugin-lightning": "^1.0.0",
     "@salesforce/sfdx-lwc-jest": "^1.1.0",
     "eslint": "^8.11.0",
@@ -37,5 +37,8 @@
     "**/{aura,lwc}/**": [
       "eslint"
     ]
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1"
   }
 }

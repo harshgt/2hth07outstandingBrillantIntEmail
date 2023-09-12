@@ -3,6 +3,8 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import getCustomerLedgerData from '@salesforce/apex/customerLedgerData.customerLedgerData';
 import getCustomerOutStandingData from '@salesforce/apex/customerOutStandingData.customerOutStandingData';
+import pdflib from "@salesforce/resourceUrl/pdflib";
+import { loadScript } from "lightning/platformResourceLoader";
    
 // Define fields to fetch
 const FIELDS = ['Account.SAP_Code__c'];
@@ -168,7 +170,7 @@ export default class CustomerLedger extends LightningElement {
             doc += '</tr>';
         doc += '</table>';
         
-        var element = 'data:application/vnd.ms-excel,' + encodeURIComponent(doc);
+        let element = 'data:application/vnd.ms-excel,' + encodeURIComponent(doc);
         let downloadElement = document.createElement('a');
         downloadElement.href = element;
         downloadElement.target = '_self';
@@ -179,51 +181,47 @@ export default class CustomerLedger extends LightningElement {
     }
 
 
-    exportLedgerDatapdf() {
-        console.log('hello');
+    renderedCallback() {
+        loadScript(this, pdflib).then(() => {});
+      }
+      async createPdf() {
+        const pdfDoc = await PDFLib.PDFDocument.create();
+        const timesRomanFont = await pdfDoc.embedFont(
+          PDFLib.StandardFonts.TimesRoman
+        );
     
-        // Create a new jsPDF instance
-        const jsPDF = require('jspdf');
-        const doc = new jsPDF();
-    
-        // Add styles for the table
-        doc.setFontSize(12);
-        doc.setFont('helvetica', 'normal');
+        const page = pdfDoc.addPage();
+        const { width, height } = page.getSize();
+        const fontSize = 30;
+        /* page.drawText("Learning with Salesforce Bolt !", {
+          x: 50,
+          y: height - 4 * fontSize,
+          size: fontSize,
+          font: timesRomanFont,
+          color: PDFLib.rgb(0, 0.53, 0.71)
+        }); */
+        page.drawText(`${this.conatctData.BusinessPartner}, ${this.conatctData.FirstName}, ${this.conatctData.LastName}, ${this.conatctData.OrganizationBPNameStart}`, {
+            x: 50,
+            y: height - 4 * fontSize,
+            size: fontSize,
+            font: timesRomanFont,
+            color: PDFLib.rgb(0, 0.53, 0.71)
+          });
+          
         
-        // Define table headers
-        const headers = this.columnHeader;
     
-        // Define table data (assuming this.contactData is an array of objects)
-        const data = this.contactData.map(record => [
-            record.BusinessPartner,
-            record.FirstName,
-            record.LastName,
-            record.OrganizationBPNameStart
-        ]);
-    
-        // Auto page break if table doesn't fit on the current page
-        const pageHeight = doc.internal.pageSize.height;
-        const startY = 20; // Adjust this value to change the starting Y position of the table
-        const margin = 10;
-        const tableHeight = data.length * 10; // Adjust this value for row height
-        const tablePageCount = doc.internal.getNumberOfPages() + 1;
-    
-        // Check if the table fits on the current page
-        if (startY + tableHeight > pageHeight - margin) {
-            doc.addPage();
-        }
-    
-        // Create the table
-        doc.autoTable({
-            head: [headers],
-            body: data,
-            startY: startY,
-            margin: { top: 20 },
-        });
-    
-        // Save or download the PDF
-        doc.save('LedgerData.pdf');
-    }
+        const pdfBytes = await pdfDoc.save();
+        this.saveByteArray("My PDF", pdfBytes);
+      }
+      
+      saveByteArray(pdfName, byte) {
+        var blob = new Blob([byte], { type: "application/pdf" });
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        let fileName = pdfName;
+        link.download = fileName;
+        link.click();
+      }
         
   
 
