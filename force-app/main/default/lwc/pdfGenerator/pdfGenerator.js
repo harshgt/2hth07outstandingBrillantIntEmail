@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import generatePDF from '@salesforce/apex/DisplayRichTextHelper.generatePDF';
+//import generatePDF from '@salesforce/apex/DisplayRichTextHelper.generatePDF';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
@@ -11,16 +11,16 @@ export default class PdfGenerator extends LightningElement {
   'background','code','code-block'];
 
   //this method will display initial text
-  get myVal() {
-      return '**Generate PDF using LWC Component**';
-  }
+  //get myVal() {
+   //   return '**Generate PDF using LWC Component**';
+  //}
 
-  attachment; //this will hold attachment reference
+  //attachment; //this will hold attachment reference
 
   /*This method extracts the html from input rich text 
       and pass this to apex class' method via implcit call
   */
-  saveAsPdf(){
+  /*saveAsPdf(){
       const editor = this.template.querySelector('lightning-input-rich-text');
       
       //implicit calling apex method
@@ -47,17 +47,17 @@ export default class PdfGenerator extends LightningElement {
               }),
           );
       })
-  }
+  }*/
   
   /*
       This method updates the selected text with defined format
   */
-  handleClick() {
-      const editor  = this.template.querySelector('lightning-input-rich-text');
-      const textToInsert = 'Journey to Salesforce'
-      editor.setRangeText(textToInsert, undefined, undefined, 'select')
-      editor.setFormat({bold: true, size:24, color: 'green', align: 'center',});
+  //handleClick() {
+   //   const editor  = this.template.querySelector('lightning-input-rich-text');
+   //   const textToInsert = 'Journey to Salesforce'
+   //   editor.setRangeText(textToInsert, undefined, undefined, 'select')
+   //   editor.setFormat({bold: true, size:24, color: 'green', align: 'center',});
   }
 
 
-    }
+  

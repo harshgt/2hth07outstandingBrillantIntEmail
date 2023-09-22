@@ -1,0 +1,39 @@
+<!-- <template>
+    <p>Hello I am Parent </p>
+    
+    Count : {count}
+    
+    
+    <c-child-l-w-c-for-practice  
+        onsubstract={subHandler}
+        onaddition={addHandler}
+        onmultiply={mulHandler}
+        onmultiplysec={mulsecHandler}
+        onzerosec={zeroHandler}>
+    </c-child-l-w-c-for-practice>
+
+
+   
+</template> -->
+
+
+<template>
+
+    <lightning-card title="PARENT">
+        
+        <lightning-input type="number"
+                        name="Set Counter"
+                        label="Set Counter :"
+                        value={setCounter}
+                        onchange={counterHandler}>
+        </lightning-input>
+      
+        <lightning-button label="Add 100 o Counter"
+                        
+                        onclick={set100AddCounter}>
+        </lightning-button>
+
+        <c-child-l-w-c-for-practice count={setCounter}></c-child-l-w-c-for-practice>
+        
+    </lightning-card>
+</template>

@@ -38,7 +38,7 @@ public with sharing class EmailHandler {
              
              // Step 4. Set email contents - you can use variables!
                mail.setSubject(subject);
-               mail.setHtmlBody(body);
+               //mail.setHtmlBody(body);
                mail.setSaveAsActivity(true);
              
              // Step 5. Add your email to the master list
