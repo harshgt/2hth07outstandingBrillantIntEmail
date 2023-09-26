@@ -24,10 +24,10 @@ async loadStaticResource() {
             this.getEma = htmlText;
             console.log(this.getEma);
         } else {
-            console.error('Failed to fetch HTML content:', response.statusText);
+            //console.error('Failed to fetch HTML content:', response.statusText);
         }
     } catch (error) {
-        console.error('Error loading HTML content:', error);
+        //console.error('Error loading HTML content:', error);
     }
 }
 
@@ -62,7 +62,8 @@ async loadStaticResource() {
     }
 
     handleRischText(event) {
-        const inputrichText = event.target.value;
+        const inputrichText = event.target.value; 
+        //const inputrichText1 = this.template.querySelector('lightning-input-rich-text').value;
         this.getEma = inputrichText;
     }
 
@@ -83,7 +84,7 @@ async loadStaticResource() {
                     this.clearFields();
                 }  
             }).catch(error =>{
-                this.showToast('Error', error, 'error');
+                //this.showToast('Error', error, 'error');
             })
             
     }
