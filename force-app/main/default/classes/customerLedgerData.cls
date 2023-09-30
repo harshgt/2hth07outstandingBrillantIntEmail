@@ -99,11 +99,11 @@ public with sharing class customerLedgerData {
          system.debug(BusinessPartnerInt);
          system.debug(recordId);
         
-        List<Account> accList = [Select id, name, SAP_Code__c from Account where Id =: recordId  ];
+        List<Account> accList = [Select id, name from Account where Id =: recordId  ];
         for(Account acc : accList)
         {
             system.debug(BusinessPartnerInt);
-            acc.SAP_Code__c = BusinessPartnerInt;
+            //acc.SAP_Code__c = BusinessPartnerInt;
             accListUpt.add(acc);
         }
         update accListUpt;
