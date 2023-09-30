@@ -10,8 +10,7 @@ public with sharing class ContactController {
                 LastName,
                 Title,
                 Phone,
-                Email,
-                Picture__c
+                Email
             FROM Contact
             /*WHERE Picture__c != NULL
             WITH USER_MODE
