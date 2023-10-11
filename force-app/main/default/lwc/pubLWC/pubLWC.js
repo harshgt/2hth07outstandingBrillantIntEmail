@@ -1,10 +1,10 @@
 import { LightningElement,wire } from 'lwc';
-import {publish, messageContext} from 'lightning/messageService';
+import {publish, MessageContext} from 'lightning/messageService';
 import UPDATING_MESSAGE_CHANNEL from '@salesforce/messageChannel/Count_Update__c';
 
 export default class PubLWC extends LightningElement {
 
-    @wire(messageContext)
+    @wire(MessageContext)
     messageContext;
 
     addHandler(){
@@ -30,9 +30,9 @@ export default class PubLWC extends LightningElement {
     mulHandler(){
         const payload = {
             operator : 'multiply',
-            constant : 1
+            constant : 2
         };
 
-        payload(this.messageContext, UPDATING_MESSAGE_CHANNEL, payload);
+        publish(this.messageContext, UPDATING_MESSAGE_CHANNEL, payload);
     }
 }
