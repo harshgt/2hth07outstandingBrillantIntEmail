@@ -1,6 +1,17 @@
 import { LightningElement,api } from 'lwc';
 import getRelatedOfAccount from '@salesforce/apex/getContactAndOpportunties.getContactAndOpportunties';
 
+
+const columns1 = [
+    { label : 'Opportunity ID', fieldName: 'Id'},
+    { label : 'Opportunity Name', fieldName:'Name'},
+]
+
+const columns2 = [
+    { label : 'Contact Id', fieldName : 'Id'},
+    { label : 'Contact Name', fieldName : 'Name'},
+]
+
 export default class LwcDatatableForPracto extends LightningElement {
 
 
@@ -9,6 +20,14 @@ export default class LwcDatatableForPracto extends LightningElement {
     showData = false;
     Buttonlabel = 'Show';
     results;
+    opportunityData=[];
+    contactData=[];
+    columns1 = columns1;
+    columns2 = columns2; 
+    tempArrayOppList;
+    tempArrayConList;
+    
+
 
 
 
@@ -17,6 +36,21 @@ export default class LwcDatatableForPracto extends LightningElement {
         .then(res => {
             let Temprec = res;
             console.log("Response" +JSON.stringify(Temprec));
+             
+            //create a two object for storing opp and con
+            let temp = Temprec.map(row => {
+                return Object.assign({ OppName: row.Opportunities , ContactName : row.Contacts})   
+            })
+            console.log("temp>> :"+ JSON.stringify(temp)); 
+
+            temp.forEach(element => {
+                this.tempArrayOppList = element.OppName;
+
+                this.tempArrayConList = element.ContactName;
+            });
+
+            this.opportunityData =  this.tempArrayOppList;
+            this.contactData = this.tempArrayConList;
 
         })
         .catch(error => {

@@ -8,8 +8,14 @@
     <template if:true={showData}>
         <lightning-datatable
            key-field="id"
-           data={data}
-           columns={columns}
+           data={opportunityData}
+           columns={columns1}
+         ></lightning-datatable>
+
+         <lightning-datatable
+           key-field="id"
+           data={contactData}
+           columns={columns2}
          ></lightning-datatable>
     </template>
 </template>

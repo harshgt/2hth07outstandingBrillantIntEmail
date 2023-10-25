@@ -209,7 +209,7 @@ export default class CustomerLedger extends LightningElement {
 	}
 
 	generatePdf(){
-    console.log('its working');
+    //console.log('its working');
     console.log(this.contactList);
 		const { jsPDF } = window.jspdf;
 		const doc = new jsPDF({
@@ -220,7 +220,7 @@ export default class CustomerLedger extends LightningElement {
 				// try changing the user permissions granted
 			} */
 		});
-    console.log('its working1');
+    //console.log('its working1');
 
 		
     doc.text("Hello this is used for Contact", 40, 40); // Adjusted Y-coordinate
@@ -237,6 +237,8 @@ export default class CustomerLedger extends LightningElement {
     doc.table(40, 100, this.contactList , this.headers, { autosize: true });
 		doc.save("demo.pdf");
 	}
+
+    
 
 	generateData(){
 		getContacts().then(result=>{

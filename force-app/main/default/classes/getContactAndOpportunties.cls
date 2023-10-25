@@ -13,4 +13,15 @@ public with sharing class getContactAndOpportunties {
 
         return null;
     }
+
+    @AuraEnabled
+    public static List<Account> getContact() {
+        list<Account> accList = [Select Id,Name, (Select Id,FirstName,LastName from Contacts) From Account];
+        if(!accList.isEmpty())
+        {
+            return accList;
+        }
+
+        return null;
+    }
 }

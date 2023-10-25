@@ -81,6 +81,8 @@ hideModalBox() {
 }
 
 
+
+
 //c/zeroToInfyLWC
 columns = COLUMNS;
 columns1 = COLUMNS1;

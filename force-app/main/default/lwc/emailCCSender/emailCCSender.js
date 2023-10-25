@@ -76,18 +76,19 @@ async loadStaticResource() {
                 if(data === 'true')
                 {
                     this.showToast('Success', 'Email sent successfully', 'success');
-                    this.clearFields();
+                    //this.clearFields();
                 }  
                 else
                 {
                     this.showToast('Error', data, 'error');
-                    this.clearFields();
+                   // this.clearFields();
                 }  
             }).catch(error =>{
                 //this.showToast('Error', error, 'error');
             })
             
     }
+    
 
     // Function to show toast notifications
     showToast(title, message, variant) {
