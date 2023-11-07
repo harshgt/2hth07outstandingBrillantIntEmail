@@ -6,3 +6,4 @@ public class YourVisualforceController {
         data = ApexPages.currentPage().getParameters().get('data');
     }
 }
+

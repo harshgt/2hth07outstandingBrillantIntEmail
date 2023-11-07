@@ -2,7 +2,7 @@ import { LightningElement, api,wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
     import downloadjs from '@salesforce/resourceUrl/downloadjs';
     import downloadPDF from '@salesforce/apex/PrintJobPDFController.getPdfFileAsBase64String';
-    import getContacts from '@salesforce/apex/getContactForAccount.getContactForAccount'; // Replace with your Apex method
+    import getContacts from '@salesforce/apex/getContactForAccount.getContactForAccount'; 
   
     import sendEmailWithAttachment from '@salesforce/apex/EmailSender.sendEmailWithAttachment';
    

@@ -1,4 +1,4 @@
-public with sharing class EmailSender {
+public class EmailSender {
     @AuraEnabled
     public static void sendEmailWithAttachment(String recipientEmail, String pdfBase64) {
         Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
@@ -16,3 +16,4 @@ public with sharing class EmailSender {
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] {email});
     }
 }
+
