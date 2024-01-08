@@ -3,7 +3,7 @@ import getAccountData from '@salesforce/apex/showAllAccountData.getAccountList';
 
 const columns =  [
     { label: 'Customer Name', fieldName: 'Name' },
-    { label: 'Customer Review', fieldName: 'review_Data__c' },
+   
 ]
 export default class SalesforceLightningCompoList extends LightningElement {
 

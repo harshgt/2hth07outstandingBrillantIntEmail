@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Get Record">
+        <div class="slds-var-m-around_medium">
+            <template if:true={getRecordFromUIProperty.data}>
+                <lightning-record-form 
+                        object-api-name="Contact"
+                        record-id={TrainerId}
+                        layout-type="Compact">
+                </lightning-record-form>
+            </template>
+            <template if:true={getRecordFromUIProperty.error}>
+                Error Occured due o connection.....
+            </template>
+        </div>
+    </lightning-card>
+</template>

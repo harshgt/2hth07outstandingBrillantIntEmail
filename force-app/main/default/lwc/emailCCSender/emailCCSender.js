@@ -1,20 +1,42 @@
-import { LightningElement,track,api } from 'lwc';
+import { LightningElement,track,api,wire } from 'lwc';
 import sendEmail from '@salesforce/apex/SendEmailController.sendEmail';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
 import getDataEmail from '@salesforce/resourceUrl/email_template';
 import getStatemail from '@salesforce/apex/SendEmailController.collectEmails';
 
 import { loadStyle } from 'lightning/platformResourceLoader';
 import MY_STATIC_RESOURCE from '@salesforce/resourceUrl/email_template';
 
-
+import getEmailsForAccount from '@salesforce/apex/getAccountForComboBox.getEmailsForAccount';
 
 export default class EmailCCSender extends LightningElement {
 
-@track getEma;
+
+emails = '';
+
+@api recordId;
+
+
+
 connectedCallback() {
     this.loadStaticResource();
+    
 }
+
+
+@wire(getEmailsForAccount, { accountId: '$recordId' })
+    wiredEmails({ error, data }) {
+        if (data) {
+            this.emails = data.join(', '); // Join emails with comma separation
+            const emails =  this.emails.split(',').map(email => email.trim());
+            this.emailList = emails;
+        } else if (error) {
+            console.error('Error retrieving emails', error);
+        }
+    }
+
+
 
 async loadStaticResource() {
     try {
@@ -22,7 +44,7 @@ async loadStaticResource() {
         if (response.ok) {
             const htmlText = await response.text();
             this.getEma = htmlText;
-            console.log(this.getEma);
+            //console.log(this.getEma);
         } else {
             //console.error('Failed to fetch HTML content:', response.statusText);
         }
@@ -49,9 +71,18 @@ async loadStaticResource() {
     @track emailList = [];
     @track emailCCList = [];
 
+    
+
     handleToAddress(event) {
-        const inputString = event.target.value;
+        /* const inputString = event.target.value;
         const emails = inputString.split(',').map(email => email.trim());
+        this.emails = inputString; // Update the emails property
+        this.emailList = emails; */
+        const inputString = event.target.value;
+        console.log('Input Value:', inputString);
+
+        const emails = inputString.split(',').map(email => email.trim());
+        this.emails = inputString; // Update the emails property
         this.emailList = emails;
     }
 
