@@ -1,17 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
-    <masterLabel>CountingUpdated</masterLabel>
-    <isExposed>True</isExposed>
     <description>Message Channel to pass value</description>
-
+    <isExposed>true</isExposed>
     <lightningMessageFields>
-        <fieldName>operator</fieldName>
         <description>To pass the number feilds</description>
+        <fieldName>operator</fieldName>
     </lightningMessageFields>
-
     <lightningMessageFields>
-        <fieldName>constant</fieldName>
         <description>To pass the number for manipulation</description>
+        <fieldName>constant</fieldName>
     </lightningMessageFields>
-
+    <masterLabel>CountingUpdated</masterLabel>
 </LightningMessageChannel>

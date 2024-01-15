@@ -6,8 +6,10 @@ export default class PlayerSearchResult extends LightningElement {
 
     retrivePlayerData;
     selectedPlayerId;
+    selectedVal='';
 
-    @wire(getCricketerList)
+
+    @wire(getCricketerList, {selectedTeam : '$selectedVal'})
     getAllPlayerList({data, error}){
         if(data){
             console.log(data);
@@ -48,6 +50,7 @@ export default class PlayerSearchResult extends LightningElement {
 
     @api searchCricketer(teamOfCricketer){
         console.log(' the child class is teamOfCricketer '+teamOfCricketer);
+        this.selectedVal = teamOfCricketer;
     }
 
 }
