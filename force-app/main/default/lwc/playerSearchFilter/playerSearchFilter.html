@@ -8,8 +8,12 @@
                             onchange={selectedPickValue} 
             ></lightning-combobox>
 
-            <p> Player Name is : {getContactName }</p>
+           
         </div>
+
+        <template if:true={getContactName}>
+            <p class="slds-align_absolute-center"> Player Name is : {getContactName }</p>
+        </template>
 
         <lightning-button title="New Player"
                           label="New Cricketer"

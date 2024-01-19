@@ -1,5 +1,7 @@
 import { LightningElement,wire,api } from 'lwc';
 import  getCricketerList  from '@salesforce/apex/getCricketerList.getCricketerList';
+import { publish, MessageContext } from 'lightning/messageService';
+import SELECTED_PLAYER from '@salesforce/messageChannel/SelectedPlayer__c';
 
 export default class PlayerSearchResult extends LightningElement {
 
@@ -19,6 +21,9 @@ export default class PlayerSearchResult extends LightningElement {
             console.log('ERROR ' + JSON.stringify(error));
         }
     }
+    
+    @wire(MessageContext)
+    messageContext;
 
     handleClickPlayerCard(event){
         this.selectedPlayerId = event.currentTarget.dataset.id;
@@ -35,6 +40,9 @@ export default class PlayerSearchResult extends LightningElement {
         if(playerBox){
             playerBox.className= 'title_wrapper selected';
         }
+
+        publish(this.messageContext, SELECTED_PLAYER, {cricketerId : this.selectedPlayerId});
+
 
 
         this.dispatchEvent(new CustomEvent( 'select', {
