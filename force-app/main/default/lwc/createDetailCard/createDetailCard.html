@@ -1,6 +1,26 @@
 <template>
     
-        p
-        {data.Name}
+        <lightning-card icon-name="standard:actions_and_buttons" >
+            <template if:true={data}>
+                <lightning-button-icon
+                    icon-name="utility:expand_alt"
+                    slot="actions"
+                    onclick={handleNavigateToRecord}>
+                </lightning-button-icon>
+                <div class="slds-p-around_small">
+                    <img src={data.Image__c} class="cricketer"> 
+                </div>
+                <h1 class="slds-m-bottom_small">Players Details</h1>
+                <p>Teams : {data.Teams__c}</p>
+                <p>Specialization : {data.Specialization__c}</p>
+                <p>Price : {data.Price__c}</p>
+                
+
+            </template>
+            <template if:false={data}>
+                <p class="slds-align_absolute-center">Selected player to see details : </p>
+            </template>
+        </lightning-card>
+       
     
 </template>

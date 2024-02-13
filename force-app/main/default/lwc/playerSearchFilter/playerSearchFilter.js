@@ -61,9 +61,13 @@ export default class PlayerSearchFilter extends NavigationMixin(LightningElement
 
         this.template.querySelector('c-player-search-result').searchCricketer(this.selectedPicklistValue); 
     }
-
+    getContactName1;
     getColumnIdName(event){
+        console.log('event.detail:', event.detail);
         this.getContactName = event.detail.playerId;
         console.log('this.getContactName '+ this.getContactName);
+
+       
+
     }
 }   

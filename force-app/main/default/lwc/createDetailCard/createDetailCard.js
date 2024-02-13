@@ -2,8 +2,9 @@ import { LightningElement,wire } from 'lwc';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import SELECTED_PLAYER from '@salesforce/messageChannel/SelectedPlayer__c';
 import  getSelectedPlayerData  from '@salesforce/apex/getCricketerList.getSelectedPlayerData';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class CreateDetailCard extends LightningElement {
+export default class CreateDetailCard extends NavigationMixin(LightningElement) {
     @wire(MessageContext)
     messageContext;
 
@@ -34,6 +35,17 @@ export default class CreateDetailCard extends LightningElement {
            
         }).catch(error =>{
             
+        })
+    }
+
+    handleNavigateToRecord(){
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: this.retriveDetailPlayerId,
+                objectApiName:'Cricketer__c',
+                actionName:'view'
+            }
         })
     }
     

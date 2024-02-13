@@ -41,9 +41,8 @@ export default class PlayerSearchResult extends LightningElement {
             playerBox.className= 'title_wrapper selected';
         }
 
+        //publishing selected player id to LMS Channel
         publish(this.messageContext, SELECTED_PLAYER, {cricketerId : this.selectedPlayerId});
-
-
 
         this.dispatchEvent(new CustomEvent( 'select', {
             detail : {
