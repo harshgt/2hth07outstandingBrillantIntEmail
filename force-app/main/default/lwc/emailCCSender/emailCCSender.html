@@ -3,7 +3,7 @@
         <div class="slds-p-around_medium">
             
            
-            <lightning-input label="TO" type="text" onchange={handleToAddress}></lightning-input>
+            <lightning-input label="TO" type="text" value={emails}  oninput={handleToAddress}></lightning-input>
             <lightning-input label="CC" type="text" onchange={handleCCAddress}></lightning-input>
             <lightning-input-rich-text class="slds-p-top_small" 
                         value={getEma}

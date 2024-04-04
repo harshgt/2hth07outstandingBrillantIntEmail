@@ -1,0 +1,21 @@
+<template>
+    <lightning-button 
+                label={Buttonlabel}
+                variant="brand"
+                onclick={inputHandler}    
+    ></lightning-button>
+
+    <template if:true={showData}>
+        <lightning-datatable
+           key-field="id"
+           data={opportunityData}
+           columns={columns1}
+         ></lightning-datatable>
+
+         <lightning-datatable
+           key-field="id"
+           data={contactData}
+           columns={columns2}
+         ></lightning-datatable>
+    </template>
+</template>

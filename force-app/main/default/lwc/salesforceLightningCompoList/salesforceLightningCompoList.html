@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Latest Customer Reviews">
+        <template if:true={data}>
+            
+                <lightning-datatable
+                    key-field="id"
+                    data={data}
+                    columns={columns}
+                    hide-checkbox-column="true">
+                </lightning-datatable>
+            
+        </template>
+        <template if:false={data}>
+            No reviews found.
+        </template>
+    </lightning-card>
+</template>
+
+
+
+

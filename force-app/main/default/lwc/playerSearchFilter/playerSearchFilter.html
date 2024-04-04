@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Select Players">
+        <div class="slds-align_absolute-center">
+            <lightning-combobox
+                            value={selectedPicklistValue}
+                            placeholder="Select a Team"
+                            options={picklistOption}
+                            onchange={selectedPickValue} 
+            ></lightning-combobox>
+
+           
+        </div>
+
+        <template if:true={getContactName}>
+            <p class="slds-align_absolute-center"> Player Name is : {getContactName }</p>
+        </template>
+
+        <lightning-button title="New Player"
+                          label="New Cricketer"
+                          slot="actions"
+                          onclick={createCricketerHandler}>
+        </lightning-button>
+    </lightning-card>
+
+    <div class="slds-var-p-top_x-small">
+        <c-player-search-result onselect={getColumnIdName}></c-player-search-result>
+    </div>
+</template>

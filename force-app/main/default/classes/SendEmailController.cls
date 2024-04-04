@@ -36,6 +36,7 @@ public with sharing class SendEmailController {
                 mail.setHtmlBody(emailBodyContent);
             }
             
+
             BodyEmail = BodyEmail.replace('[RECIPIENT_NAME]', 'Harshal');
             BodyEmail = BodyEmail.replace('[MESSAGE_CONTENT]', 'message regarding the test Template');
             BodyEmail = BodyEmail.replace('[YOUR_NAME]', 'Shyam');
